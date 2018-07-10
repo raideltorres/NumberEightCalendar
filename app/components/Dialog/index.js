@@ -40,7 +40,7 @@ class AlertDialog extends React.Component {
 
 AlertDialog.propTypes = {
   handleClose: PropTypes.func,
-  showDialog: PropTypes.boolean,
+  showDialog: PropTypes.bool,
 };
 
 export default AlertDialog;
