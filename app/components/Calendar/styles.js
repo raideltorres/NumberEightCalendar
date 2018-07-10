@@ -5,6 +5,10 @@ const CalendarContainer = styled.div`
 
   .inputContainer {
     margin: 1rem;
+
+    &.large {
+      width: 16rem;
+    }
   }
 
   table {

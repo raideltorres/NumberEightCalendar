@@ -11,8 +11,6 @@ import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
 import Autosuggest from 'react-autosuggest';
-import match from 'autosuggest-highlight/match';
-import parse from 'autosuggest-highlight/parse';
 import moment from 'moment';
 
 // Importing utils
@@ -147,22 +145,11 @@ class Calendar extends React.Component { // eslint-disable-line react/prefer-sta
   }
 
   renderSuggestion(suggestion, { query, isHighlighted }) {
-    const matches = match(suggestion.label, query);
-    const parts = parse(suggestion.label, matches);
-
+    console.log(suggestion, query, isHighlighted);
     return (
       <MenuItem selected={isHighlighted} component="div">
         <div>
-          {
-            parts.map((part, index) => part.highlight ?
-              <span key={String(index)} style={{ fontWeight: 500 }}>
-                {part.text}
-              </span> :
-              <strong key={String(index)} style={{ fontWeight: 300 }}>
-                {part.text} ({suggestion.fullName})
-              </strong>
-            )
-          }
+          <span>{suggestion.label} ({suggestion.fullName})</span>
         </div>
       </MenuItem>
     );
@@ -334,7 +321,7 @@ class Calendar extends React.Component { // eslint-disable-line react/prefer-sta
                 onChange={(e) => { this.changeDays(e); }}
               />
             </div>
-            <div className="inputContainer">
+            <div className="inputContainer large">
               <Autosuggest
                 renderInputComponent={this.renderInput}
                 suggestions={this.state.suggestions}
